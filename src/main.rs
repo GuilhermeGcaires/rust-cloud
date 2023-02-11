@@ -1,9 +1,9 @@
 use std::collections::HashMap;
-use std::fs::{File, self};
+use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn main() {
-    let file = File::open("../2019-Oct.csv").unwrap();
+    let file = File::open("./tratado.csv").unwrap();
     let reader = BufReader::new(file);
     let mut table: HashMap<String, i32> = HashMap::new();
     let mut total = 0;
@@ -17,12 +17,7 @@ fn main() {
         total += 1;
     }
 
-    let mut write_file = File::create("most_occuring.txt");
 
-    let mut result: Vec<_> = table.iter().collect();
-    result.sort();
-
-    fs::write("most_occuring.txt", result);
     println!("{:?}", total);
-    println!("{:?}", result);
+    println!("{:?}", table);
 }
